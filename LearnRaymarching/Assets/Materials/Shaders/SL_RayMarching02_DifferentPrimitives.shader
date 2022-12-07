@@ -77,7 +77,6 @@ Shader "RayMarching/RayMarching02_DifferentPrimitives" {
                 t = clamp(t, 0, 1);
                 float3 c = _CapsuleEndA + t *AtoB;
                 return length(rayCurrentPos - c) - _CapsuleRadius;
-                
             }
 
             // 甜甜圈距离场
