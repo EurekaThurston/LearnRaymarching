@@ -101,7 +101,6 @@ Shader "RayMarching/RayMarching01_SimpleScene" {
                 float3 rayOrigin = float3(0, 1, 0);                          // 摄像机位置/光线步进的起始点
                 float3 rayDirection = normalize(float3(uv.x, uv.y, 1));      // 光线步进的方向
                 float rayMarchedDist = RayMarch(rayOrigin, rayDirection);    // 光线在当前方向上返回结果所步进的距离
-                return rayMarchedDist/10;
                 float3 rayPos = rayOrigin + rayDirection * rayMarchedDist;   // 光线返回结果时所在的位置
                 float diffuse = GetLight(rayPos);                            // 当前片段的diffuse颜色
                 

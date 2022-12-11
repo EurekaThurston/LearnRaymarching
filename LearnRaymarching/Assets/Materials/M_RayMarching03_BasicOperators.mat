@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_RayMarching03_BasicOperators
+  m_Shader: {fileID: 4800000, guid: da68f9a496cbab94c82b041592e3fcf7, type: 3}
+  m_ValidKeywords:
+  - LerpObjects
+  m_InvalidKeywords:
+  - LerpOjbects
+  - SMOOTHUNION
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _BasicOperators: 0
+    - _CapsuleRadius: 0.5
+    - _CylinderRadius: 0.15
+    - _LerpObjects: 1
+    - _ShadowInt: 0.2
+    - _SmoothUnion: 0
+    - _Smoothness: 1.05
+    - _SphereARadius: 0.61
+    - _SphereBRadius: 0.55
+    - _SphereCRadius: 1
+    - _SphereDRadius: 0.5
+    - _SphereERadius: 0.5
+    - _SphereFRadius: 0.5
+    - _SphereGRadius: 0.5
+    - _SphereRadius: 0.79
+    - _TorusRadius: 1.37
+    - _TorusThickness: 0.23
+    m_Colors:
+    - _BackgroundColor: {r: 0.9245283, g: 0.7893379, b: 0.5189569, a: 0}
+    - _BoxOrigin: {r: 0, g: 1, b: 4, a: 0}
+    - _BoxSize: {r: 0.5, g: 0.5, b: 0.5, a: 0}
+    - _CapsuleEndA: {r: 4, g: 0.63, b: 10, a: 0}
+    - _CapsuleEndB: {r: 4, g: 3, b: 10, a: 0}
+    - _CylinderEndA: {r: -0.18, g: 0.2, b: 2.36, a: 0}
+    - _CylinderEndB: {r: 2.07, g: 0.2, b: 4.69, a: 0}
+    - _LightPos: {r: 6.75, g: 13.2, b: -7.73, a: 0}
+    - _SphereAOrigin: {r: -0.27, g: 1, b: 3.58, a: 0}
+    - _SphereBOrigin: {r: 0.93, g: 1, b: 3.5, a: 0}
+    - _SphereCOrigin: {r: 0, g: 1, b: 4, a: 0}
+    - _SphereColor: {r: 0.5990566, g: 1, b: 0.9342716, a: 1}
+    - _SphereDOrigin: {r: 0, g: 1.75, b: 2.5, a: 0}
+    - _SphereEOrigin: {r: 0, g: 1.75, b: 3.2, a: 0}
+    - _SphereFOrigin: {r: 0, g: 0.25, b: 2.5, a: 0}
+    - _SphereGOrigin: {r: 0, g: 0.25, b: 3.2, a: 0}
+    - _SphereOrigin: {r: -0.09, g: 0.82, b: 3.13, a: 0}
+    - _TorusOrigin: {r: 0.4, g: 0.5, b: 6, a: 0}
+  m_BuildTextureStacks: []

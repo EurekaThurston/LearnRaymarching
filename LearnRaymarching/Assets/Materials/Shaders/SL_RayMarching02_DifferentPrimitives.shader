@@ -63,7 +63,7 @@ Shader "RayMarching/RayMarching02_DifferentPrimitives" {
 
             VertexOutput vert (VertexInput v) {
                 VertexOutput o;
-                o.vertex = TransformObjectToHClip(v.vertex);
+                o.vertex = TransformObjectToHClip(v.vertex.xyz);
                 o.uv = v.uv;
                 return o;
             }
@@ -71,18 +71,18 @@ Shader "RayMarching/RayMarching02_DifferentPrimitives" {
             // 胶囊体距离场
             float sdCapsule(float3 rayCurrentPos)
             {
-                float3 AtoB = _CapsuleEndB - _CapsuleEndA;
-                float3 AtoRay = rayCurrentPos - _CapsuleEndA;
+                float3 AtoB = _CapsuleEndB.xyz - _CapsuleEndA.xyz;
+                float3 AtoRay = rayCurrentPos - _CapsuleEndA.xyz;
                 float t = dot(AtoB, AtoRay) / dot(AtoB, AtoB);
                 t = clamp(t, 0, 1);
-                float3 c = _CapsuleEndA + t *AtoB;
+                float3 c = _CapsuleEndA.xyz + t * AtoB;
                 return length(rayCurrentPos - c) - _CapsuleRadius;
             }
 
             // 甜甜圈距离场
             float sdTorus(float3 rayCurrentPos)
             {
-                float3 rayPosRelativeToTorus = rayCurrentPos - _TorusOrigin;
+                float3 rayPosRelativeToTorus = rayCurrentPos - _TorusOrigin.xyz;
                 float distTorusOriginToRay_XZ = length(rayPosRelativeToTorus.xz) - _TorusRadius;
                 float distGroundToRay = rayPosRelativeToTorus.y;
                 float distTorusToRay = length(float2(distTorusOriginToRay_XZ, distGroundToRay)) - _TorusThickness;
@@ -92,17 +92,17 @@ Shader "RayMarching/RayMarching02_DifferentPrimitives" {
             // 盒体距离场
             float sdBox(float3 rayCurrentPos)
             {
-                float3 rayPosRelativeToBox = rayCurrentPos - _BoxOrigin;
-                return length(max(abs(rayPosRelativeToBox) - _BoxSize, 0));
+                float3 rayPosRelativeToBox = rayCurrentPos - _BoxOrigin.xyz;
+                return length(max(abs(rayPosRelativeToBox) - _BoxSize.xyz, 0));
             }
 
             // 圆柱体距离场
             float sdCylinder(float3 rayCurrentPos)
             {
-                float3 AToB = _CylinderEndB - _CylinderEndA;
-                float3 AToRay = rayCurrentPos - _CylinderEndA;
+                float3 AToB = _CylinderEndB.xyz - _CylinderEndA.xyz;
+                float3 AToRay = rayCurrentPos - _CylinderEndA.xyz;
                 float AtoRayProjOnAtoB = dot(AToRay, AToB) / dot(AToB, AToB);
-                float3 c = _CylinderEndA + AtoRayProjOnAtoB * AToB;
+                float3 c = _CylinderEndA.xyz + AtoRayProjOnAtoB * AToB;
 
                 float x = length(rayCurrentPos - c) - _CylinderRadius;
                 float y = (abs(AtoRayProjOnAtoB - 0.5) - 0.5) * length(AToB);

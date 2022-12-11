@@ -128,4 +128,52 @@ Raymarching是从光源处(摄像机)向当前片段的方向发射光线并进�
     }
 
 
+## 常用运算
+
+### 基础运算
+平移: 使用当前光线位置减去物体平移后的目标位置得到的向量代替原本的光线位置进行后续的距离场计算
+
+旋转: (简单的旋转)使用2D旋转矩阵对想要旋转的平面进行旋转
+
+    // 盒体距离场
+            float sdBox(float3 rayCurrentPos)
+            {
+                float3 rayPosRelativeToBox = rayCurrentPos - _BoxOrigin.xyz;    // 平移盒体
+                rayPosRelativeToBox.xz = mul(Rotate(_Time.y), rayPosRelativeToBox.xz);      // 旋转盒体
+                return length(max(abs(rayPosRelativeToBox) - _BoxSize.xyz, 0));
+            }
+
+缩放: 用缩放的三维向量乘以物体位置到光线位置的向量,并将得到的距离结果除以缩放向量的分量的最大值
+
+### Blend
+
+<img src="ReadmeImg/Blend.gif" width="400">
+
+对两个物体的距离进行插值:
+
+    float box = sdBox(rayCurrentPos);
+                float sphere = sdSphere(rayCurrentPos, _SphereCOrigin.xyz, _SphereCRadius);
+                distance = lerp(box, sphere, sin(_Time.y) * 0.5 + 0.5);
+
+
+### SmoothUnion
+<img src="ReadmeImg/SmoothUnion.gif" width="400">
+
+Smooth min两个物体:
+
+    float sphereA = sdSphere(rayCurrentPos, float3(sin(_Time.y) * 0.8 + _SphereAOrigin.x, _SphereAOrigin.y, 
+                _SphereAOrigin.z), _SphereARadius);
+                float sphereB = sdSphere(rayCurrentPos, float3(_SphereBOrigin.x, sin(_Time.z) * 0.5 + _SphereBOrigin.y, 
+                _SphereBOrigin.z), _SphereBRadius);
+                distance = smin(sphereA, sphereB, _Smoothness);
+
+### Boolean
+
+<img src="ReadmeImg/Boolean.gif" width="400">
+
+相减: max(-ObjectA, OjbectB)
+
+相交: max(ObjectA, ObjectB)
+
+
 </div>
